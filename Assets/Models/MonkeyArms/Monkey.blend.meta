@@ -186,22 +186,22 @@ ModelImporter:
     - name: Armature
       parentName: Monkey(Clone)
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 0.8044377, y: 0.8044377, z: 0.8044377}
     - name: Bone
       parentName: Armature
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
+      rotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftBone
       parentName: Bone
-      position: {x: 1.3163983, y: 0.986115, z: 0}
-      rotation: {x: -0.000000026692543, y: -0.00000002669254, z: -0.7071068, w: 0.7071067}
+      position: {x: 1.3164175, y: 0.9862693, z: 0.00000047683716}
+      rotation: {x: 0.037209135, y: -0.7070651, z: -0.70612717, w: -0.0076853316}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftBone2
       parentName: LeftBone
-      position: {x: -0, y: 1.7943934, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: 0.000011116266, y: 1.7944733, z: -0.00000023841858}
+      rotation: {x: 0.00000019278366, y: 0.00000008940692, z: -0.24810372, w: 0.96873343}
       scale: {x: 1, y: 1, z: 1}
     - name: LeftBone3
       parentName: LeftBone2
@@ -215,13 +215,13 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: RightBone
       parentName: Bone
-      position: {x: -1.3163983, y: 0.986115, z: 0}
-      rotation: {x: -0.000000026692543, y: 0.00000002669254, z: 0.7071068, w: 0.7071067}
+      position: {x: -1.3164893, y: 0.9863156, z: 0.0000019073486}
+      rotation: {x: 0.026973644, y: 0.7000828, z: 0.7127769, w: -0.033252586}
       scale: {x: 1, y: 1, z: 1}
     - name: RightBone2
       parentName: RightBone
-      position: {x: -0, y: 1.7943934, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: -0.0000137239695, y: 1.7944729, z: 0.0000015497208}
+      rotation: {x: -0.000000036321563, y: -0.000000089406925, z: 0.23811048, w: 0.9712381}
       scale: {x: 1, y: 1, z: 1}
     - name: RightBone3
       parentName: RightBone2
@@ -236,17 +236,17 @@ ModelImporter:
     - name: Cube
       parentName: Monkey(Clone)
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 0.2718106, y: 0.2718106, z: 0.2718106}
     - name: Cube.002
       parentName: Monkey(Clone)
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 0.2718106, y: 0.2718106, z: 0.2718106}
     - name: Cube.003
       parentName: Monkey(Clone)
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
