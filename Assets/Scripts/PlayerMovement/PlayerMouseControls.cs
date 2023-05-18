@@ -14,7 +14,6 @@ public class PlayerMouseControls : MonoBehaviour
     }
 
     public RotationDirection rotationDirections;
-    // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
@@ -37,7 +36,7 @@ public class PlayerMouseControls : MonoBehaviour
         }
         
         rotation += wantedVelocity * Time.deltaTime;
-        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
+        // rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
 
         transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
     }
