@@ -1,5 +1,6 @@
 ### CUSTOM ###
-.idea/
+.idea
+.idea/*
 
 ### VisualStudioCode template
 .vscode/*
