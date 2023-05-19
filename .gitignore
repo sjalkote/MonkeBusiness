@@ -1,6 +1,7 @@
 ### CUSTOM ###
 .idea
 .idea/*
+*.blend[1-9]
 
 ### VisualStudioCode template
 .vscode/*
