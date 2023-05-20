@@ -44,9 +44,11 @@ public class RaycastGun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if (Physics.Raycast(muzzle.position, -transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                    Debug.Log(hitInfo.transform.name);
+                    Debug.Log(hitInfo.transform.GetComponent<IDamageable>());
                     Debug.Log("Shot");
                     damageable?.Damage(gunData.damage);
                 }
@@ -62,7 +64,7 @@ public class RaycastGun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
         
-        Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
+        Debug.DrawRay(muzzle.position, -muzzle.forward * gunData.maxDistance);
     }
 
     private void OnGunShot()
