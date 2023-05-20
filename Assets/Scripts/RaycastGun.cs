@@ -15,6 +15,8 @@ public class RaycastGun : MonoBehaviour
     {
         PlayerWeaponsControl.ShootInput += Shoot;
         PlayerWeaponsControl.ReloadInput += StartReload;
+        
+        gunData.currentAmmo = gunData.magSize;
     }
 
     public void StartReload()
@@ -45,6 +47,7 @@ public class RaycastGun : MonoBehaviour
                 if (Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                    Debug.Log("Shot");
                     damageable?.Damage(gunData.damage);
                 }
                 

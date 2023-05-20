@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016034bef3135500f92166412fd7bcb3, type: 3}
   m_Name: Bamboo Pistol
   m_EditorClassIdentifier: 
-  name: 
-  damage: 0
-  maxDistance: 0
+  name: Bamboo Pistol
+  damage: 5
+  maxDistance: 50
   currentAmmo: 0
-  magSize: 0
-  fireRate: 0
-  reloadTime: 0
+  magSize: 20
+  fireRate: 120
+  reloadTime: 2
   reloading: 0
