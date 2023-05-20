@@ -442,6 +442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonkeyAnimated2
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 3a2378e3df008d2449514e3978575fe5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ba24eeb29e580204697b81bbb5f5799f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2378e3df008d2449514e3978575fe5, type: 3}
 --- !u!4 &511382523 stripped
@@ -1093,6 +1097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FruitFly
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e1c3da060c11a3b44be1d2d37b95ed6e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 26c40fe052f6dad43ba3573b4b15294e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1c3da060c11a3b44be1d2d37b95ed6e, type: 3}
 --- !u!1001 &1794536400
