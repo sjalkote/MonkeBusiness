@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Object = UnityEngine.Object;
+using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 velocity;
     bool isGrounded;
+    
+    private EventInstance playerFootsteps;
 
     private void Awake()
     {
@@ -27,6 +32,8 @@ public class PlayerController : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
         playerInputActions.Player.Jump.performed += Jump;
+
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.playerFootsteps, transform.position);
     }
     
     private void Start()
@@ -45,10 +52,14 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"))) * speed;
 
+        if (Vector3Int.RoundToInt(new Vector3(move.x, playerBody.velocity.y, move.z)) != Vector3Int.RoundToInt(playerBody.velocity))
+        {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.playerFootsteps, transform.position);
+        }
+
         playerBody.velocity = new Vector3(move.x, playerBody.velocity.y, move.z);
     }
-    
-        
+
     #region Input Handling
     public void Jump(InputAction.CallbackContext ctx)
     {

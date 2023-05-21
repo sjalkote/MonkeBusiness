@@ -715,8 +715,8 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -724,14 +724,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -806,6 +798,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: {x: 1500, y: -1500}
   rotationDirections: 2
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 1608566772}
 --- !u!1001 &1067259904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -861,6 +866,26 @@ PrefabInstance:
       propertyPath: BulletTrail
       value: 
       objectReference: {fileID: 8413555038996610697, guid: b1bf0faa09fcd2176bcdf38bfa7bd8be, type: 3}
+    - target: {fileID: 1508659312173335622, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
+      propertyPath: shootSound.Path
+      value: event:/Weapons/Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508659312173335622, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
+      propertyPath: shootSound.Guid.Data1
+      value: 63462863
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508659312173335622, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
+      propertyPath: shootSound.Guid.Data2
+      value: 1083491563
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508659312173335622, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
+      propertyPath: shootSound.Guid.Data3
+      value: 964216707
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508659312173335622, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
+      propertyPath: shootSound.Guid.Data4
+      value: -396832587
+      objectReference: {fileID: 0}
     - target: {fileID: 1742537326119379526, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
       propertyPath: m_Name
       value: bamboo pistol
@@ -1181,6 +1206,64 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 963194227}
+--- !u!1 &1673870552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673870553}
+  - component: {fileID: 1673870554}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1673870553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673870552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2000832854}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673870554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673870552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e3c48e5bc4f936eb6d8580903161f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <pistolShootSound>k__BackingField:
+    Guid:
+      Data1: 63462863
+      Data2: 1083491563
+      Data3: 964216707
+      Data4: -396832587
+    Path: event:/Weapons/Pistol
+  <playerFootsteps>k__BackingField:
+    Guid:
+      Data1: -385494015
+      Data2: 1195472629
+      Data3: -2064153176
+      Data4: 1900422219
+    Path: event:/Player/Player Footsteps
 --- !u!4 &1789045584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1397642949931841788, guid: a1c13a67248d49c51a020e73d648b5ab, type: 3}
@@ -1380,6 +1463,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894156808}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2000832853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2000832854}
+  - component: {fileID: 2000832855}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2000832854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000832853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1673870553}
+  m_Father: {fileID: 2108094219}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000832855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000832853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed67293eea2f5f697a1f358417403a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2108094218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108094219}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108094219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108094218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.104024, y: 3.781517, z: 3.4523168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2000832854}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &621131598848870900
 PrefabInstance:
   m_ObjectHideFlags: 0

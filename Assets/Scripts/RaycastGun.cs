@@ -8,7 +8,7 @@ public class RaycastGun : MonoBehaviour
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
     [SerializeField] private TrailRenderer BulletTrail;
-    
+
     private float timeSinceLastShot;
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
 
@@ -49,6 +49,7 @@ public class RaycastGun : MonoBehaviour
 
             TrailRenderer trail = Instantiate(BulletTrail, muzzle.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hitInfo));
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.pistolShootSound, this.transform.position);
                     
             damageable?.Damage(gunData.damage);
         }
