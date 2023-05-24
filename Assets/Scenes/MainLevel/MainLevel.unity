@@ -329,6 +329,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9ad6be91-01cc-4949-b8ee-8e98f39da07d
     m_ActionName: Movement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d3a3350f-7af1-4d8e-aab6-f0b90dfcd5cb
+    m_ActionName: Weapons/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed13b76a-df01-48e8-a2ab-c252dc50bd35
+    m_ActionName: Weapons/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1479,7 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65221348a700d354e8dd0243225e6eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 0
+  mouseSensitivity: 40
   cameraRotationExtremes: 90
   playerCamera: {fileID: 963194228}
 --- !u!143 &1896973853
