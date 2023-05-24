@@ -5,28 +5,35 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 5f;
-    
-    private Vector2 _moveInput;
+    [SerializeField] private float gravityMultiplier = 1f;
     private CharacterController _characterController;
 
-    private void Awake() { _characterController = GetComponent<CharacterController>(); }
+    private Vector2 _moveInput;
+
+    private void Awake()
+    {
+        _characterController = GetComponent<CharacterController>();
+    }
 
     private void Update()
     {
-        UpdateMovement();
+        ApplyExternalForces();
+        ApplyMovement();
     }
 
-    private void UpdateMovement()
+    private void ApplyExternalForces()
+    {
+        _characterController.Move(Physics.gravity * (gravityMultiplier * Time.deltaTime));
+    }
+
+    private void ApplyMovement()
     {
         var playerTransform = transform;
-        
+
         var movementDirection = playerTransform.right * _moveInput.x + playerTransform.forward * _moveInput.y;
         _characterController.Move(movementDirection * (movementSpeed * Time.deltaTime));
-        
-        
-        
     }
-    
+
     public void Move(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
