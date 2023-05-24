@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ApplyExternalForces();
         ApplyMovement();
+        // Debug.Log(_characterController.isGrounded);
     }
 
     private void ApplyExternalForces()
