@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: Figure out the correct parent GameObject to attach to so that it moves where the player looks. That way you only interact with what you are currently viewing.
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform interactionPoint;
