@@ -1,42 +1,75 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float gravityMultiplier = 1f;
-    private CharacterController _characterController;
+    public Camera playerCamera;
+    public float walkSpeed = 6f;
+    public float runSpeed = 12f;
+    public float jumpPower = 7f;
+    public float gravity = 10f;
 
-    private Vector2 _moveInput;
+    public float lookSpeed = 2f;
+    public float lookXLimit = 45f;
+    
+    private Vector3 _moveDirection = Vector3.zero;
+    private float _rotationX;
 
-    private void Awake()
+    public bool canMove = true;
+
+    
+    CharacterController _characterController;
+    void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Update()
+    void Update()
     {
-        ApplyExternalForces();
-        ApplyMovement();
-        // Debug.Log(_characterController.isGrounded);
-    }
 
-    private void ApplyExternalForces()
-    {
-        _characterController.Move(Physics.gravity * (gravityMultiplier * Time.deltaTime));
-    }
+        #region Handles Movment
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
 
-    private void ApplyMovement()
-    {
-        var playerTransform = transform;
+        // Press Left Shift to run
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        float movementDirectionY = _moveDirection.y;
+        _moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        var movementDirection = playerTransform.right * _moveInput.x + playerTransform.forward * _moveInput.y;
-        _characterController.Move(movementDirection * (movementSpeed * Time.deltaTime));
-    }
+        #endregion
 
-    public void Move(InputAction.CallbackContext context)
-    {
-        _moveInput = context.ReadValue<Vector2>();
+        #region Handles Jumping
+        if (Input.GetButton("Jump") && canMove && _characterController.isGrounded)
+        {
+            _moveDirection.y = jumpPower;
+        }
+        else
+        {
+            _moveDirection.y = movementDirectionY;
+        }
+
+        if (!_characterController.isGrounded)
+        {
+            _moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+        #endregion
+
+        #region Handles Rotation
+        _characterController.Move(_moveDirection * Time.deltaTime);
+
+        if (canMove)
+        {
+            _rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            _rotationX = Mathf.Clamp(_rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+        #endregion
     }
 }
