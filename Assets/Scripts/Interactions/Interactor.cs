@@ -23,6 +23,8 @@ public class Interactor : MonoBehaviour
     {
         numFound = Physics.OverlapSphereNonAlloc(interactionPoint.position, interactionPointRadius, _colliders, interactionMask);
         
+        // TODO: Add a check that the player (and reticle) are **looking** at an interactable to prevent running when the player is not looking at it.
+        // This could be done by attaching to the Main Camera and reducing the size (or maybe change shape to a rectangle?) so that it isn't behind the player.
         if (numFound > 0)
         {
             _interactable = _colliders[0].GetComponent<IInteractable>();
