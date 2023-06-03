@@ -1,4 +1,4 @@
-name: Build project
+name: 🛠️ Build Project
 
 on: [push, pull_request]
 
