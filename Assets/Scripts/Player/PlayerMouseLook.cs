@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMouseLook : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity;
-    [SerializeField] private float cameraRotationExtremes = 90f;
+    [SerializeField] private float cameraRotationExtreme = 90f;
     [SerializeField] private Transform playerCamera;
 
     private float _mouseY;
@@ -13,29 +13,18 @@ public class PlayerMouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked; // Locks mouse cursor to the window and hides it
     }
-
-    /// <summary>
-    /// Rotates the player's body left and right
-    /// </summary>
-    /// <param name="context"></param>
-    public void MouseXMove(InputAction.CallbackContext context)
+    
+    public void MouseMove(InputAction.CallbackContext context)
     {
+        var mouseDelta = context.ReadValue<Vector2>();
+        _mouseY = Mathf.Clamp(
+            _mouseY - mouseDelta.y * Time.deltaTime * mouseSensitivity,
+            -cameraRotationExtreme, cameraRotationExtreme);
+
         transform.Rotate(
             Vector3.up,
-            context.ReadValue<float>() * Time.deltaTime * mouseSensitivity
+            mouseDelta.x * Time.deltaTime * mouseSensitivity
         );
-    }
-
-    /// <summary>
-    /// Rotates the player's camera up and down
-    /// </summary>
-    /// <param name="context"></param>
-    public void MouseYMove(InputAction.CallbackContext context)
-    {
-        _mouseY = Mathf.Clamp(
-            _mouseY - context.ReadValue<float>() * Time.deltaTime * mouseSensitivity,
-            -cameraRotationExtremes, cameraRotationExtremes);
-
         playerCamera.localRotation = Quaternion.Euler(_mouseY, 0f, 0f);
     }
 }
