@@ -53,6 +53,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SlowWalk"",
+                    ""type"": ""Button"",
+                    ""id"": ""565f876f-6ac8-478d-a341-f62e875ba12a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18083d19-faa7-41a1-8b56-7565dbaddb3d"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowWalk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -191,6 +211,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Movement_HorizontalMovement = m_Movement.FindAction("HorizontalMovement", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
+        m_Movement_SlowWalk = m_Movement.FindAction("SlowWalk", throwIfNotFound: true);
         // Weapons
         m_Weapons = asset.FindActionMap("Weapons", throwIfNotFound: true);
         m_Weapons_Fire = m_Weapons.FindAction("Fire", throwIfNotFound: true);
@@ -259,6 +280,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_HorizontalMovement;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Look;
+    private readonly InputAction m_Movement_SlowWalk;
     public struct MovementActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -266,6 +288,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @HorizontalMovement => m_Wrapper.m_Movement_HorizontalMovement;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Look => m_Wrapper.m_Movement_Look;
+        public InputAction @SlowWalk => m_Wrapper.m_Movement_SlowWalk;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @SlowWalk.started += instance.OnSlowWalk;
+            @SlowWalk.performed += instance.OnSlowWalk;
+            @SlowWalk.canceled += instance.OnSlowWalk;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -297,6 +323,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @SlowWalk.started -= instance.OnSlowWalk;
+            @SlowWalk.performed -= instance.OnSlowWalk;
+            @SlowWalk.canceled -= instance.OnSlowWalk;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -373,6 +402,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnSlowWalk(InputAction.CallbackContext context);
     }
     public interface IWeaponsActions
     {

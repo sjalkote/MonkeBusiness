@@ -16,6 +16,7 @@ public class PlayerMouseLook : MonoBehaviour
     
     public void MouseMove(InputAction.CallbackContext context)
     {
+        //TODO: Fix weird "snapping" when moving and rotating the camera
         var mouseDelta = context.ReadValue<Vector2>();
         _mouseY = Mathf.Clamp(
             _mouseY - mouseDelta.y * Time.deltaTime * mouseSensitivity,

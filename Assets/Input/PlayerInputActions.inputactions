@@ -15,27 +15,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseX",
-                    "type": "PassThrough",
-                    "id": "41dc1276-a630-4e33-86a6-9dccde94fac8",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MouseY",
-                    "type": "PassThrough",
-                    "id": "0467ba5d-9f0b-4048-a058-0d29b6255253",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "9ad6be91-01cc-4949-b8ee-8e98f39da07d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "873832d6-bf03-4b95-8705-8f6057effcd9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SlowWalk",
+                    "type": "Button",
+                    "id": "565f876f-6ac8-478d-a341-f62e875ba12a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -100,34 +100,34 @@
                 },
                 {
                     "name": "",
-                    "id": "0029d395-c19a-466d-a696-e890fb0fafe8",
-                    "path": "<Mouse>/delta/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseX",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0b78412a-e84e-49b6-b5fd-44107129e706",
-                    "path": "<Mouse>/delta/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MouseY",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3cbf9e20-db59-49cc-95b8-18cccfbac2d0",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "661a72c6-b498-42d7-b1f1-182aea0eb33a",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18083d19-faa7-41a1-8b56-7565dbaddb3d",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlowWalk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

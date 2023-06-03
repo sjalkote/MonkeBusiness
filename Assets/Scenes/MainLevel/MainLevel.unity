@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -442,38 +442,6 @@ MonoBehaviour:
     m_ActionId: d21211fa-9b08-4d18-8c80-88d4faa7f5d3
     m_ActionName: Movement/HorizontalMovement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1896973852}
-        m_TargetAssemblyTypeName: PlayerMouseLook, Assembly-CSharp
-        m_MethodName: MouseXMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 41dc1276-a630-4e33-86a6-9dccde94fac8
-    m_ActionName: Movement/MouseX[/Mouse/delta/x]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1896973852}
-        m_TargetAssemblyTypeName: PlayerMouseLook, Assembly-CSharp
-        m_MethodName: MouseYMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 0467ba5d-9f0b-4048-a058-0d29b6255253
-    m_ActionName: Movement/MouseY[/Mouse/delta/y]
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 9ad6be91-01cc-4949-b8ee-8e98f39da07d
     m_ActionName: Movement/Jump[/Keyboard/space]
@@ -485,6 +453,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ed13b76a-df01-48e8-a2ab-c252dc50bd35
     m_ActionName: Weapons/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1896973852}
+        m_TargetAssemblyTypeName: PlayerMouseLook, Assembly-CSharp
+        m_MethodName: MouseMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 873832d6-bf03-4b95-8705-8f6057effcd9
+    m_ActionName: Movement/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1896973851}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: SlowWalk
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 565f876f-6ac8-478d-a341-f62e875ba12a
+    m_ActionName: Movement/SlowWalk[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -2441,14 +2441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a16227b7193c74e914f7382d6cdd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 963194227}
-  walkSpeed: 6
-  runSpeed: 12
-  jumpPower: 7
-  gravity: 10
-  lookSpeed: 2
-  lookXLimit: 45
-  canMove: 1
+  moveSpeed: 0.2
+  drag: 3.5
+  slowWalkMult: 0.6
+  jumpPower: 20
+  gravityMult: 2
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1896973852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,8 +2459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65221348a700d354e8dd0243225e6eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 40
-  cameraRotationExtremes: 90
+  mouseSensitivity: 15
+  cameraRotationExtreme: 90
   playerCamera: {fileID: 963194228}
 --- !u!143 &1896973853
 CharacterController:
