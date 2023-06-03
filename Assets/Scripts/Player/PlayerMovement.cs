@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 velocity = Vector3.zero;
     private CharacterController _characterController;
-    private Vector2 _moveInput;
     private bool _isSlowWalking;
+    private Vector2 _moveInput;
 
     public void Start()
     {
@@ -27,13 +27,8 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed * (_isSlowWalking ? slowWalkMult : 1f)
         );
 
-        if (_characterController.isGrounded)
+        if (_characterController.isGrounded && velocity.y < 0f)
             velocity.y = 0f;
-        // else
-        //     velocity.y -= gravity;
-
-        if (Input.GetButton("Jump") && _characterController.isGrounded)
-            velocity.y = jumpPower;
 
         _characterController.Move(velocity * Time.deltaTime);
     }
@@ -43,12 +38,16 @@ public class PlayerMovement : MonoBehaviour
         velocity += Physics.gravity * (Time.fixedDeltaTime * gravityMult);
 
         velocity *= Mathf.Clamp01(1.0f - drag * Time.fixedDeltaTime);
-        // _characterController.Move(velocity * Time.fixedDeltaTime);
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (_characterController.isGrounded) velocity.y = jumpPower;
     }
 
     public void SlowWalk(InputAction.CallbackContext context)
