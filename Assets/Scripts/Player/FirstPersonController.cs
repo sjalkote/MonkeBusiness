@@ -11,6 +11,8 @@ namespace Player
         private const float _threshold = 0.01f;
         private const float TerminalVelocity = 53.0f;
 
+        #region User Variables
+        
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 4.0f;
 
@@ -57,6 +59,8 @@ namespace Player
 
         [Tooltip("How far in degrees can you move the camera down")]
         public float BottomClamp = -90.0f;
+        
+        #endregion
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -67,27 +71,19 @@ namespace Player
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private GameObject _mainCamera;
-
-
-#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
-#endif
         private float _rotationVelocity;
 
         // player
         private float _speed;
         private float _verticalVelocity;
 
-        private bool IsCurrentDeviceMouse
+        private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
+
+        private float Height
         {
-            get
-            {
-#if ENABLE_INPUT_SYSTEM
-                return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-				return false;
-#endif
-            }
+            get => _controller.height;
+            set => _controller.height = value;
         }
 
         private void Awake()
