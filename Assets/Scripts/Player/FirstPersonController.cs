@@ -1,4 +1,5 @@
-﻿using StarterAssets;
+﻿using System;
+using InputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,11 +9,11 @@ namespace Player
     [RequireComponent(typeof(PlayerInput))]
     public class FirstPersonController : MonoBehaviour
     {
-        private const float _threshold = 0.01f;
+        private const float Threshold = 0.01f;
         private const float TerminalVelocity = 53.0f;
 
         #region User Variables
-        
+
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 4.0f;
 
@@ -30,6 +31,9 @@ namespace Player
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
+        
+        [Tooltip("What to multiply the character height with when crouching")]
+        public float CrouchHeightMultiplier = 0.0f;
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
@@ -59,12 +63,14 @@ namespace Player
 
         [Tooltip("How far in degrees can you move the camera down")]
         public float BottomClamp = -90.0f;
-        
-        #endregion
 
+        #endregion
+        
         // cinemachine
         private float _cinemachineTargetPitch;
         private CharacterController _controller;
+
+        private float _defaultHeight;
         private float _fallTimeoutDelta;
         private StarterAssetsInputs _input;
 
@@ -82,8 +88,9 @@ namespace Player
 
         private float Height
         {
-            get => _controller.height;
-            set => _controller.height = value;
+            // Get and set the y scale of the PlayerCapsule object
+            get => transform.localScale.y;
+            set => transform.localScale = new Vector3(transform.localScale.x, value, transform.localScale.z);
         }
 
         private void Awake()
@@ -101,11 +108,13 @@ namespace Player
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _defaultHeight = Height;
         }
 
         private void Update()
         {
             JumpAndGravity();
+            Crouch();
             GroundedCheck();
             Move();
         }
@@ -140,7 +149,7 @@ namespace Player
         private void CameraRotation()
         {
             // if there isn't an input
-            if (!(_input.look.sqrMagnitude >= _threshold)) return;
+            if (!(_input.look.sqrMagnitude >= Threshold)) return;
 
             //Don't multiply mouse input by Time.deltaTime
             var deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
@@ -208,6 +217,15 @@ namespace Player
             // move the player
             _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        }
+
+        private void Crouch()
+        {
+            if (_input.crouch) 
+                Height = _defaultHeight * CrouchHeightMultiplier;
+            else 
+                //TODO: CHeck if there's enough room to stand up
+                Height = _defaultHeight; 
         }
 
         private void JumpAndGravity()
