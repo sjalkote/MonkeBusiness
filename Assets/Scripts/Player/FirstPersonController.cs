@@ -1,5 +1,4 @@
-﻿using System;
-using InputSystem;
+﻿using InputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +10,7 @@ namespace Player
     {
         private const float Threshold = 0.01f;
         private const float TerminalVelocity = 53.0f;
-
+        
         #region User Variables
 
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
@@ -31,9 +30,9 @@ namespace Player
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
-        
+
         [Tooltip("What to multiply the character height with when crouching")]
-        public float CrouchHeightMultiplier = 0.0f;
+        public float CrouchHeightMultiplier;
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
@@ -73,6 +72,7 @@ namespace Player
         private float _defaultHeight;
         private float _fallTimeoutDelta;
         private StarterAssetsInputs _input;
+        private bool _isCrouching;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -83,7 +83,8 @@ namespace Player
         // player
         private float _speed;
         private float _verticalVelocity;
-
+        private Vector3 _slideVelocity;
+        
         private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
         private float Height
@@ -215,17 +216,30 @@ namespace Player
             }
 
             // move the player
-            _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime * (_isCrouching ? .4f : 1)) +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime + 
+                             _slideVelocity * Time.deltaTime);
         }
 
         private void Crouch()
         {
-            if (_input.crouch) 
+            if (_input.crouch && !_isCrouching)
+            {
+                _isCrouching = true;
                 Height = _defaultHeight * CrouchHeightMultiplier;
-            else 
+                _verticalVelocity -= 40f;
+
+                var forward = transform.forward;
+                forward.y = 0;
+                _slideVelocity = forward * 20f;
+            }
+            else if (!_input.crouch && _isCrouching)
+            {
+                _isCrouching = false;
                 //TODO: CHeck if there's enough room to stand up
-                Height = _defaultHeight; 
+                Height = _defaultHeight;
+                _slideVelocity = Vector3.zero;
+            }
         }
 
         private void JumpAndGravity()
