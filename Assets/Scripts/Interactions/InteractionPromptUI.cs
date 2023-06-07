@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class InteractionPromptUI : MonoBehaviour
 {
-    private Camera _mainCamera;
     [SerializeField] private GameObject _uiPanel;
     [SerializeField] private TextMeshProUGUI _promptText;
+
+    public bool IsDisplayed;
+    private Camera _mainCamera;
 
     private void Start()
     {
@@ -21,8 +20,6 @@ public class InteractionPromptUI : MonoBehaviour
         var rotation = _mainCamera.transform.rotation;
         transform.LookAt(transform.position + rotation * Vector3.forward, rotation * Vector3.up);
     }
-
-    public bool IsDisplayed = false;
 
     public void SetUp(string promptText)
     {
