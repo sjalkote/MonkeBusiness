@@ -1,16 +1,15 @@
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DiscordController : MonoBehaviour
 {
     public long applicationID = 1115659409360703538;
     [Space]
-    // TODO: Add status when in Main Menu, make sure to move the GameObject to that scene instead of this one
     public string details = "Monkeying Around";
-    public string state = "Current velocity: ";
+    public string state = "";
     [Space]
     public string largeImage = "banana_pile";
-    public string largeText = "Defending Bananas";
+    public string largeText = "";
 
     private CharacterController _character;
     private long _time;
@@ -30,14 +29,38 @@ public class DiscordController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "MainMenu":
+                details = "In the Main Menu"; state = "Staring at the screen";
+                largeImage = "banana_pile"; largeText = "MonkeBusiness";
+                break;
+            case "MainLevel": 
+                details = "Monkeying Around"; state = "Current velocity: ";
+                largeImage = "banana_pile"; largeText = "Defending Bananas";
+                _character = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
+                break;
+            default:
+                details = "Monkeying Around";
+                state = "";
+                largeImage = "banana_pile";
+                largeText = "";
+                Debug.LogWarning($"This scene '{scene.name}' does not have a case in DiscordController.cs");
+                break;
+        }
     }
 
     void Start()
     {
         // Log in with the Application ID
+        Debug.Log("Starting Discord Status");
         _discord = new Discord.Discord(applicationID, (System.UInt64)Discord.CreateFlags.NoRequireDiscord);
-
-        _character = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
         _time = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
         UpdateStatus();
@@ -61,10 +84,11 @@ public class DiscordController : MonoBehaviour
         try
         {
             var activityManager = _discord.GetActivityManager();
+            if (_character != null) state += _character.velocity.ToString();
             var activity = new Discord.Activity
             {
                 Details = details,
-                State = state + _character.velocity,
+                State = state,
                 Assets = { LargeImage = largeImage, LargeText = largeText },
                 Timestamps = { Start = _time }
             };
@@ -74,7 +98,7 @@ public class DiscordController : MonoBehaviour
                 if (res != Discord.Result.Ok) Debug.LogWarning("Failed to connect to Discord: " + res);
             });
         }
-        catch { // If updating the status fails, Destroy the GameObject
+        catch {
             Destroy(gameObject);
         }
     }
