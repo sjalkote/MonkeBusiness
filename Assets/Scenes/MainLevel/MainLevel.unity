@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 32705275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.93, y: -2.19, z: -29.29}
-  m_LocalScale: {x: 1, y: 4.7751284, z: -33.365685}
+  m_LocalScale: {x: 1, y: 4.7751284, z: 33.36568}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1171578205}
@@ -393,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 309812490}
   m_LocalRotation: {x: -0.025584716, y: 0.025584703, z: 0.7066442, w: 0.70664346}
   m_LocalPosition: {x: -3.91, y: -1.63, z: -28.96}
-  m_LocalScale: {x: 0.37326, y: 8.7683, z: -33.235775}
+  m_LocalScale: {x: 0.37326, y: 8.7683, z: 33.23577}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1171578205}
@@ -1131,7 +1131,7 @@ Transform:
   m_GameObject: {fileID: 1141364971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.67, y: -2.19, z: -29.29}
-  m_LocalScale: {x: 1, y: 4.7751284, z: -33.365685}
+  m_LocalScale: {x: 1, y: 4.7751284, z: 33.36568}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1171578205}
@@ -1773,6 +1773,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
   m_PrefabInstance: {fileID: 593539379}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1379140518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379140520}
+  - component: {fileID: 1379140519}
+  m_Layer: 0
+  m_Name: DiscordController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1379140519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379140518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989c21f7179ce4bd299236345e2bd236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applicationID: 1115659409360703538
+  details: Monkeying Around
+  state: 'Current velocity: '
+  largeImage: banana_pile
+  largeText: Defending Bananas
+--- !u!4 &1379140520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379140518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.413609, y: -5.7558146, z: 7.80624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483543804
 GameObject:
   m_ObjectHideFlags: 0
